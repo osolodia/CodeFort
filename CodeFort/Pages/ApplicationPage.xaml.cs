@@ -155,6 +155,6 @@ public partial class ApplicationPage : ContentPage
 
     private void generatorPasswordButton_Clicked(object sender, EventArgs e)
     {
-        passwordEntry.Text = SecurePasswordGenerator.GenerateSecurePassword((new Random()).Next(12, 15));
+        passwordEntry.Text = SecurePasswordGenerator.GenerateSecurePassword();
     }
 }

@@ -11,24 +11,47 @@ namespace CodeFort.Generator
     {
         private const string SpecialChars = "!@#$%^&*()-_=+[]{}|;:'\",.<>/?";
 
-        public static string? GenerateSecurePassword(int length = 12)
+        private static string UppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        private static string LowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
+        private static string Numbers = "0123456789";
+        private static string SpecialCharacters = "!@#$%^&*()-_=+[]{}|;:'<>,.?/";
+
+        public static string GenerateSecurePassword()
         {
-            const string validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()-_=+[]{}|;:'\",.<>/?";
+            List<string> passwordGroups = new List<string>
+        {
+            GetRandomCharacters(UppercaseLetters, (new Random()).Next(3, 5)),
+            GetRandomCharacters(LowercaseLetters, (new Random()).Next(3, 5)),
+            GetRandomCharacters(Numbers, (new Random()).Next(2, 3)),
+            GetRandomCharacters(SpecialCharacters,(new Random()).Next(2, 3))
+        };
 
-            using (var rng = RandomNumberGenerator.Create())
+            string password = string.Join("", passwordGroups);
+            password = ShuffleString(password);
+
+            return password;
+        }
+
+        private static string GetRandomCharacters(string source, int count)
+        {
+            Random random = new Random();
+            return new string(Enumerable.Range(0, count).Select(_ => source[random.Next(source.Length)]).ToArray());
+        }
+
+        private static string ShuffleString(string input)
+        {
+            char[] characters = input.ToCharArray();
+            Random random = new Random();
+
+            for (int i = characters.Length - 1; i > 0; i--)
             {
-                byte[] randomBytes = new byte[length];
-                rng.GetBytes(randomBytes);
-
-                char[] securePassword = new char[length];
-
-                for (int i = 0; i < length; i++)
-                {
-                    securePassword[i] = validChars[randomBytes[i] % validChars.Length];
-                }
-
-                return securePassword.ToString();
+                int j = random.Next(0, i + 1);
+                char temp = characters[i];
+                characters[i] = characters[j];
+                characters[j] = temp;
             }
+
+            return new string(characters);
         }
 
         public static bool IsPasswordSecure(string password)
