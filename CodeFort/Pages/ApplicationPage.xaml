@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CodeFort.Pages.ApplicationPage"
+             Title="">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <VerticalStackLayout HorizontalOptions="FillAndExpand">
+            <VerticalStackLayout x:Name="mainStackLayout" HorizontalOptions="FillAndExpand">
+                <Entry x:Name="nameEntry" Margin="10" FontSize="35" Placeholder="Имя"/>
+                <Entry x:Name="loginEntry" Margin="10" FontSize="35" Placeholder="Логин"/>
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Entry x:Name="passwordEntry" Margin="0,0,10,0" FontSize="35" Placeholder="Пароль"  IsPassword="True"/>
+                    <Button Grid.Column="1" Margin="0,0,10,0" x:Name="hidePasswordButton" FontSize="35" Text="🙈" Clicked="hidePasswordButton_Clicked"/>
+                    <Button Grid.Column="2" x:Name="generatorPasswordButton" FontSize="35" Text="🙊" Clicked="generatorPasswordButton_Clicked"/>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15*"/>
+                        <ColumnDefinition Width="15*"/>
+                        <ColumnDefinition Width="15*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="saveButton" Margin="10" Clicked="saveButton_Clicked" Text="Добавить" FontSize="25"/>
+                    <Button Grid.Column="1" x:Name="removeButton" Margin="10" Clicked="removeButton_Clicked" Text="Удалить" FontSize="25"/>
+                    <Button Grid.Column="2" x:Name="updateButton" Margin="10" Clicked="updateButton_Clicked" Text="Редактировать" FontSize="25"/>
+                </Grid>
+            </VerticalStackLayout>
+            <Button x:Name="hideButton" Margin="10" Text="Скрыть поля для ввода" Clicked="hideButton_Clicked" FontSize="25"/>
+        </VerticalStackLayout>
+
+        <ListView BackgroundColor="#F5F8FF" Grid.Row="1" x:Name="listView" RowHeight="100" ItemTapped="listView_ItemTapped" HorizontalOptions="FillAndExpand">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <VerticalStackLayout Spacing="10" Margin="10">
+                            <Label x:Name="nameLabel" Text="{Binding Name}" TextColor="#14212A" FontSize="30" FontAttributes="Bold"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Label x:Name="loginLabel" TextColor="#14212A" Grid.Column="0" Text="{Binding Login}" FontSize="25" />
+                                <Label Grid.Column="2" x:Name="passwordLabel" TextColor="#14212A" Text="********" FontSize="25" />
+                            </Grid>
+                        </VerticalStackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Grid.Row="1" x:Name="ThemeSwitchButton" MinimumWidthRequest="50" MinimumHeightRequest="50" 
+     Clicked="ThemeSwitchButton_Clicked" FontSize="25" VerticalOptions="End" Margin="20" HorizontalOptions="End"/>
+        <!--<Button    VerticalOptions="End" Margin="10"  Text="Скрыть" FontSize="20"/>-->
+    </Grid>
+</ContentPage>
