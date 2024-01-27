@@ -9,8 +9,6 @@ namespace CodeFort.Generator
 {
     public static class SecurePasswordGenerator
     {
-        private const string SpecialChars = "!@#$%^&*()-_=+[]{}|;:'\",.<>/?";
-
         private static string UppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         private static string LowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
         private static string Numbers = "0123456789";
@@ -61,7 +59,7 @@ namespace CodeFort.Generator
                    && password.Any(char.IsLower)
                    && password.Any(char.IsUpper)
                    && password.Any(char.IsDigit)
-                   && password.Any(c => SpecialChars.Contains(c));
+                   && password.Any(c => SpecialCharacters.Contains(c));
         }
     }
 }
