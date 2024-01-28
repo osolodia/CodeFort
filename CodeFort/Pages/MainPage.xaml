@@ -12,7 +12,7 @@
             <Label x:Name="GreetingLabel" FontSize="40" HorizontalOptions="Center" Margin="0,20" FontAttributes="Bold"/>
             <Label x:Name="MessageLabel" FontSize="20" HorizontalOptions="Center" Margin="0,20" />
 
-            <Entry Placeholder="Имя" x:Name="NameEntry" Margin="0,20" />
+            <Entry Placeholder="Имя" FontSize="20" x:Name="NameEntry" Margin="0,20" />
             <Grid Margin="0,10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
