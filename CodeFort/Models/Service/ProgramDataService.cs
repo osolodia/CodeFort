@@ -17,7 +17,17 @@ namespace CodeFort.Models.Service
         }
         public void Add(ProgramData data)
         {
-            dbContext.ProgramsData.Add(data);
+            var item = dbContext.ProgramsData.Where(i => i.Login == data.Login).ToList();
+            //var item = dbContext.ProgramsData.FirstOrDefault(i => i.Login == data.Login);
+            if (item.Count == 0)
+            {
+                dbContext.ProgramsData.Add(data);
+            }
+            else
+            {
+                data.Name += $" ({item.Count})";
+                dbContext.ProgramsData.Add(data);
+            }
             dbContext.SaveChanges();
         }
         public List<ProgramData> GetAll()

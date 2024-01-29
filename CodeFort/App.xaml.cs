@@ -10,6 +10,7 @@ namespace CodeFort
 
             MainPage = new AppShell();
             Routing.RegisterRoute(nameof(ApplicationPage), typeof(ApplicationPage));
+            Routing.RegisterRoute(nameof(ListPage), typeof(ListPage));
         }
     }
 }

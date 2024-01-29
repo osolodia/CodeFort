@@ -66,7 +66,7 @@ namespace CodeFort
                     if (await SecureStorageManager.SetSavedData(NameEntry.Text, PasswordEntry.Text))
                     {
                         NameEntry.Text = PasswordEntry.Text = String.Empty;
-                        await Navigation.PushAsync(new ApplicationPage(DataService), true);
+                        await Navigation.PushAsync(new ListPage(DataService, theme), true);
                     }
                     else
                     {
@@ -89,7 +89,7 @@ namespace CodeFort
             string? password = await SecureStorageManager.GetSavedPassword();
             if (password  == PasswordEntry.Text)
             {
-                await Navigation.PushAsync(new ApplicationPage(DataService), true);
+                await Navigation.PushAsync(new ListPage(DataService, theme), true);
             }
             else
             {
